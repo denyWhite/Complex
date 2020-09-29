@@ -32,8 +32,16 @@ class Complex
      */
     public function __construct(...$args)
     {
-        $this->realPart = $args[0] ?? 0;
-        $this->imaginaryPart = $args[1] ?? 0;
+        $real = $args[0] ?? 0;
+        if (! is_numeric($real)) {
+            throw new InvalidArgumentException('Real part must be numeric');
+        }
+        $this->realPart = $real;
+        $imaginary = $args[1] ?? 0;
+        if (! is_numeric($imaginary)) {
+            throw new InvalidArgumentException('Imaginary part must be numeric');
+        }
+        $this->imaginaryPart = $imaginary;
     }
 
     public function __toString()
